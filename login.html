@@ -1,6 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Prep Circuit</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins,sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#070b16;
+  color:white;
+}
+
+.box{
+  width:380px;
+  padding:35px;
+  border-radius:25px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+  text-align:center;
+}
+
+h1{
+  color:#7b8cff;
+  margin-bottom:20px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border:none;
+  border-radius:12px;
+  background:#111827;
+  color:white;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(135deg,#6c63ff,#00bfff);
+  color:white;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.google{
+  background:white;
+  color:black;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>Prep Circuit Login</h1>
+
+<input type="text" id="name" placeholder="Your Name (for signup)">
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="signup()">Sign Up</button>
+<button onclick="login()">Login</button>
+<button class="google" onclick="googleLogin()">Continue with Google</button>
+
+</div>
+
+<!-- FIREBASE SCRIPT -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -9,6 +100,7 @@ import {
   signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+/* YOUR FIREBASE CONFIG */
 const firebaseConfig = {
   apiKey: "AIzaSyC5cSxB7Pzy9g7ayRYYCXrhjUaJ2x8dKCI",
   authDomain: "prep-circuit.firebaseapp.com",
@@ -21,46 +113,69 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// SAFE DEBUG
-console.log("Login page loaded");
+/* SIGN UP */
+window.signup = function () {
 
-window.signup = async function () {
-  try {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-    await createUserWithEmailAndPassword(auth, email, password);
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(() => {
 
-    window.location.href = "dashboard.html";
-  } catch (e) {
-    alert(e.message);
-  }
-};
+      localStorage.setItem("studentName", name);
 
-window.login = async function () {
-  try {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+      window.location.href = "dashboard.html";
 
-    await signInWithEmailAndPassword(auth, email, password);
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
 
-    window.location.href = "dashboard.html";
-  } catch (e) {
-    alert(e.message);
-  }
-};
+}
 
-window.googleLogin = async function () {
-  try {
-    const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
+/* LOGIN */
+window.login = function () {
 
-    localStorage.setItem("studentName", result.user.displayName);
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-    window.location.href = "dashboard.html";
-  } catch (e) {
-    alert(e.message);
-  }
-};
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
 
+      window.location.href = "dashboard.html";
+
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+
+}
+
+/* GOOGLE LOGIN */
+window.googleLogin = function () {
+
+  const provider = new GoogleAuthProvider();
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+
+      localStorage.setItem(
+        "studentName",
+        result.user.displayName
+      );
+
+      window.location.href = "dashboard.html";
+
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+
+}
+
+</script>
+
+</body>
+</html>
 </script>
