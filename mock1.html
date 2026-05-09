@@ -1,401 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>JEE Main CBT Mock Test</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
-body{
-background:#070b16;
-color:white;
-display:flex;
-height:100vh;
-overflow:hidden;
-}
-
-/* LEFT SIDE */
-
-.left{
-width:75%;
-padding:25px;
-overflow-y:auto;
-}
-
-.topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:25px;
-background:#111827;
-padding:18px;
-border-radius:15px;
-}
-
-.topbar h2{
-color:#7b8cff;
-}
-
-.timer{
-font-size:24px;
-font-weight:bold;
-color:#00bfff;
-}
-
-.section-buttons{
-display:flex;
-gap:15px;
-margin-bottom:25px;
-}
-
-.section-btn{
-padding:12px 20px;
-border:none;
-border-radius:10px;
-background:#1f2937;
-color:white;
-cursor:pointer;
-}
-
-.section-btn.active{
-background:#6c63ff;
-}
-
-.question-box{
-background:#111827;
-padding:30px;
-border-radius:20px;
-}
-
-.question{
-font-size:24px;
-margin-bottom:25px;
-line-height:1.6;
-}
-
-.option{
-background:#1f2937;
-padding:15px;
-margin:15px 0;
-border-radius:12px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.option:hover{
-background:#374151;
-}
-
-.bottom-buttons{
-display:flex;
-justify-content:space-between;
-margin-top:30px;
-}
-
-.btn{
-padding:14px 22px;
-border:none;
-border-radius:10px;
-background:#6c63ff;
-color:white;
-cursor:pointer;
-font-size:15px;
-}
-
-/* RIGHT SIDE */
-
-.right{
-width:25%;
-background:#111827;
-padding:20px;
-overflow-y:auto;
-border-left:1px solid rgba(255,255,255,0.08);
-}
-
-.right h2{
-margin-bottom:20px;
-text-align:center;
-}
-
-.palette{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:12px;
-}
-
-.qnum{
-height:45px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#1f2937;
-border-radius:10px;
-cursor:pointer;
-}
-
-.qnum.active{
-background:#6c63ff;
-}
-
-.legend{
-margin-top:30px;
-}
-
-.legend p{
-margin:10px 0;
-font-size:14px;
-}
-
-.submit-btn{
-width:100%;
-padding:15px;
-margin-top:30px;
-background:#00bfff;
-border:none;
-border-radius:12px;
-color:white;
-font-size:16px;
-cursor:pointer;
-}
-
-.result{
-text-align:center;
-padding:50px;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<!-- LEFT -->
-
-<div class="left">
-
-<div class="topbar">
-
-<h2>
-JEE Main CBT Mock Test
-</h2>
-
-<div class="timer" id="timer">
-180:00
-</div>
-
-</div>
-
-<!-- SECTION BUTTONS -->
-
-<div class="section-buttons">
-
-<button class="section-btn active">
-Physics
-</button>
-
-<button class="section-btn">
-Chemistry
-</button>
-
-<button class="section-btn">
-Mathematics
-</button>
-
-</div>
-
-<!-- QUESTION -->
-
-<div class="question-box">
-
-<div class="question" id="question">
-Loading...
-</div>
-
-<div id="options"></div>
-
-<div class="bottom-buttons">
-
-<button class="btn"
-onclick="prevQuestion()">
-Previous
-</button>
-
-<button class="btn"
-onclick="nextQuestion()">
-Next
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- RIGHT -->
-
-<div class="right">
-
-<h2>
-Question Palette
-</h2>
-
-<div class="palette" id="palette">
-
-</div>
-
-<div class="legend">
-
-<p>
-🟣 Current Question
-</p>
-
-<p>
-⚪ Not Answered
-</p>
-
-</div>
-
-<button class="submit-btn"
-onclick="submitTest()">
-Submit Test
-</button>
-
-</div>
-
-<script>
-
-let quizData = [];
-let current = 0;
-let score = 0;
-let answered = {};
-
-fetch("2S1.json")
-
-.then(response => response.json())
-
-.then(data => {
-
-quizData = data;
-
-createPalette();
-
-loadQuestion();
-
-});
-
-function createPalette(){
-
-let paletteHTML = "";
-
-for(let i=0;i<quizData.length;i++){
-
-paletteHTML += `
-<div class="qnum"
-id="q${i}"
-onclick="goToQuestion(${i})">
-${i+1}
-</div>
-`;
-
-}
-
-document.getElementById("palette").innerHTML =
-paletteHTML;
-
-}
-
-function loadQuestion(){
-
-document.getElementById("question").innerHTML =
-`${current+1}. ${quizData[current].question}`;
-
-let html = "";
-
-quizData[current].options.forEach(option => {
-
-html += `
-<div class="option"
-onclick="checkAnswer('${option}')">
-${option}
-</div>
-`;
-
-});
-
-document.getElementById("options").innerHTML =
-html;
-
-document.querySelectorAll(".qnum")
-.forEach(q => q.classList.remove("active"));
-
-document.getElementById(`q${current}`)
-.classList.add("active");
-
-}
-
-function checkAnswer(selected){
-
-answered[current] = true;
-
-if(selected == quizData[current].answer){
-
-score++;
-
-alert("Correct");
-
-}
-else{
-
-alert("Wrong");
-
-}
-
-}
-
-function nextQuestion(){
-
-if(current < quizData.length-1){
-
-current++;
-
-loadQuestion();
-
-}
-
-}
-
-function prevQuestion(){
-
-if(current > 0){
-
-current--;
-
-loadQuestion();
-
-}
-
-}
-
-function goToQuestion(index){
-
-current = index;
-
-loadQuestion();
-
-}
-
 function submitTest(){
 
 let attempted =
@@ -405,60 +7,47 @@ document.body.innerHTML = `
 
 <div class="result">
 
+<div class="result-box">
+
 <h1>
-Test Submitted
+JEE Main Result
 </h1>
 
-<br>
+<div class="result-stats">
+
+<div class="stat">
+<h2>${score}</h2>
+<p>Correct</p>
+</div>
+
+<div class="stat">
+<h2>${attempted-score}</h2>
+<p>Wrong</p>
+</div>
+
+<div class="stat">
+<h2>${attempted}</h2>
+<p>Attempted</p>
+</div>
+
+<div class="stat">
+<h2>${quizData.length-attempted}</h2>
+<p>Left</p>
+</div>
+
+</div>
+
+<br><br>
 
 <h2>
-Score:
+Final Score:
 ${score}/${quizData.length}
 </h2>
 
-<br>
-
-<h2>
-Attempted:
-${attempted}
-</h2>
-
-<br>
-
-<h2>
-Left:
-${quizData.length-attempted}
-</h2>
+</div>
 
 </div>
 
 `;
 
 }
-
-/* TIMER */
-
-let time = 10800;
-
-setInterval(()=>{
-
-let hours =
-Math.floor(time/3600);
-
-let minutes =
-Math.floor((time%3600)/60);
-
-let seconds =
-time%60;
-
-document.getElementById("timer").innerHTML =
-`${hours}:${minutes<10?"0":""}${minutes}:${seconds<10?"0":""}${seconds}`;
-
-time--;
-
-},1000);
-
-</script>
-
-</body>
-</html>
