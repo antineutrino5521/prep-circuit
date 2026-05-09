@@ -1,48 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>Physics PYQs</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Physics Chapters - Prep Circuit</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
 
 body{
 background:#070b16;
 color:white;
-font-family:Arial;
-padding:40px;
+padding:40px 5%;
 }
 
-.question-box{
-max-width:800px;
-margin:auto;
+h1{
+text-align:center;
+font-size:42px;
+margin-bottom:10px;
+color:#7b8cff;
+}
+
+.subtitle{
+text-align:center;
+color:#bdbdbd;
+margin-bottom:50px;
+}
+
+.chapter-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.chapter-card{
 background:#111827;
-padding:30px;
-border-radius:20px;
+padding:25px;
+border-radius:18px;
+transition:0.3s;
+border:1px solid rgba(255,255,255,0.08);
 }
 
-.option{
-display:block;
-margin-top:15px;
-padding:14px;
-background:#1f2937;
-border-radius:10px;
-cursor:pointer;
+.chapter-card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 20px rgba(108,99,255,0.3);
 }
 
-.option:hover{
-background:#374151;
+.chapter-icon{
+font-size:40px;
+margin-bottom:18px;
+color:#7b8cff;
+}
+
+.chapter-card h2{
+font-size:22px;
+margin-bottom:10px;
+}
+
+.chapter-card p{
+color:#c7c7c7;
+font-size:14px;
+line-height:1.6;
+margin-bottom:20px;
 }
 
 button{
-margin-top:25px;
-padding:14px 24px;
+padding:12px 20px;
 border:none;
 border-radius:10px;
-background:#6c63ff;
+background:linear-gradient(135deg,#6c63ff,#00bfff);
 color:white;
 cursor:pointer;
+font-size:15px;
+}
+
+button:hover{
+opacity:0.9;
 }
 
 </style>
@@ -51,48 +96,149 @@ cursor:pointer;
 
 <body>
 
-<div class="question-box">
+<h1>Physics Chapters</h1>
 
-<h2>
-Q1. SI unit of Force is?
-</h2>
+<p class="subtitle">
+Select a chapter to practice JEE Main PYQs
+</p>
 
-<label class="option">
-<input type="radio" name="q1">
-Newton
-</label>
+<div class="chapter-container">
 
-<label class="option">
-<input type="radio" name="q1">
-Joule
-</label>
+<!-- Mechanics -->
 
-<label class="option">
-<input type="radio" name="q1">
-Pascal
-</label>
+<div class="chapter-card">
 
-<label class="option">
-<input type="radio" name="q1">
-Watt
-</label>
+<div class="chapter-icon">
+<i class="fa-solid fa-gears"></i>
+</div>
 
-<button onclick="nextQuestion()">
-Next Question
+<h2>Mechanics</h2>
+
+<p>
+Laws of motion, work power energy, rotation and gravitation.
+</p>
+
+<a href="mechanics.html">
+<button>
+Practice
 </button>
+</a>
 
 </div>
 
-<script>
+<!-- Current Electricity -->
 
-function nextQuestion(){
+<div class="chapter-card">
 
-alert("Next Question Coming Soon");
+<div class="chapter-icon">
+<i class="fa-solid fa-bolt"></i>
+</div>
 
-}
+<h2>Current Electricity</h2>
 
-</script>
+<p>
+Ohm law, circuits, resistance and electrical measurements.
+</p>
+
+<a href="electricity.html">
+<button>
+Practice
+</button>
+</a>
+
+</div>
+
+<!-- Modern Physics -->
+
+<div class="chapter-card">
+
+<div class="chapter-icon">
+<i class="fa-solid fa-atom"></i>
+</div>
+
+<h2>Modern Physics</h2>
+
+<p>
+Photoelectric effect, atoms, nuclei and semiconductors.
+</p>
+
+<a href="modern.html">
+<button>
+Practice
+</button>
+</a>
+
+</div>
+
+<!-- Optics -->
+
+<div class="chapter-card">
+
+<div class="chapter-icon">
+<i class="fa-solid fa-lightbulb"></i>
+</div>
+
+<h2>Optics</h2>
+
+<p>
+Ray optics, wave optics, mirrors, lenses and interference.
+</p>
+
+<a href="optics.html">
+<button>
+Practice
+</button>
+</a>
+
+</div>
+
+<!-- Thermodynamics -->
+
+<div class="chapter-card">
+
+<div class="chapter-icon">
+<i class="fa-solid fa-temperature-high"></i>
+</div>
+
+<h2>Thermodynamics</h2>
+
+<p>
+Heat transfer, laws of thermodynamics and kinetic theory.
+</p>
+
+<a href="thermo.html">
+<button>
+Practice
+</button>
+</a>
+
+</div>
+
+<!-- SHM & Waves -->
+
+<div class="chapter-card">
+
+<div class="chapter-icon">
+<i class="fa-solid fa-wave-square"></i>
+</div>
+
+<h2>SHM & Waves</h2>
+
+<p>
+Oscillations, wave motion, sound waves and resonance.
+</p>
+
+<a href="waves.html">
+<button>
+Practice
+</button>
+</a>
+
+</div>
+
+</div>
 
 </body>
 
+</html>
 </html>
