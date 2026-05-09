@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Daily Streak - Prep Circuit</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#070b16;
+      overflow:hidden;
+      position:relative;
+      color:white;
+    }
+
+    /* Background Glow */
+
+    body::before{
+      content:'';
+      position:absolute;
+      width:350px;
+      height:350px;
+      background:#6c63ff;
+      filter:blur(140px);
+      top:-100px;
+      left:-100px;
+      opacity:0.4;
+    }
+
+    body::after{
+      content:'';
+      position:absolute;
+      width:350px;
+      height:350px;
+      background:#00bfff;
+      filter:blur(140px);
+      bottom:-100px;
+      right:-100px;
+      opacity:0.3;
+    }
+
+    .streak-card{
+      width:90%;
+      max-width:420px;
+      padding:40px;
+      border-radius:28px;
+      text-align:center;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      backdrop-filter:blur(15px);
+      z-index:2;
+      animation:fadeIn 1s ease;
+      box-shadow:0 0 30px rgba(0,0,0,0.4);
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .fire{
+      font-size:75px;
+      margin-bottom:20px;
+      animation:float 3s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-12px);
+      }
+      100%{
+        transform:translateY(0);
+      }
+    }
+
+    h1{
+      font-size:40px;
+      color:#7b8cff;
+      margin-bottom:10px;
+    }
+
+    p{
+      color:#c2c2c2;
+      margin-bottom:30px;
+    }
+
+    .streak-btn{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:16px;
+      background:linear-gradient(135deg,#6c63ff,#00bfff);
+      color:white;
+      font-size:17px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .streak-btn:hover{
+      transform:scale(1.04);
+      box-shadow:0 0 25px rgba(108,99,255,0.5);
+    }
+
+    .days-box{
+      margin-top:30px;
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:10px;
+    }
+
+    .day{
+      height:45px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.06);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:14px;
+      transition:0.3s;
+    }
+
+    .active{
+      background:linear-gradient(135deg,#6c63ff,#00bfff);
+      box-shadow:0 0 15px rgba(108,99,255,0.5);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="streak-card">
+
+    <div class="fire">
+      🔥
+    </div>
+
+    <h1 id="streakCount">
+      0 Day Streak
+    </h1>
+
+    <p>
+      Practice every day to keep your streak alive.
+    </p>
+
+    <button onclick="markToday()" class="streak-btn">
+      Mark Today's Practice
+    </button>
+
+    <!-- Week Progress -->
+
+    <div class="days-box">
+
+      <div class="day">S</div>
+      <div class="day">M</div>
+      <div class="day">T</div>
+      <div class="day">W</div>
+      <div class="day">T</div>
+      <div class="day">F</div>
+      <div class="day">S</div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    let streak = localStorage.getItem("streak") || 0;
+
+    let lastDate = localStorage.getItem("lastDate");
+
+    const streakText =
+    document.getElementById("streakCount");
+
+    streakText.innerText =
+    streak + " Day Streak";
+
+    const dayBoxes =
+    document.querySelectorAll(".day");
+
+    function updateWeekUI(){
+
+      const todayIndex =
+      new Date().getDay();
+
+      dayBoxes.forEach((box,index)=>{
+
+        if(index <= todayIndex){
+
+          box.classList.add("active");
+
+        }
+
+      });
+
+    }
+
+    updateWeekUI();
+
+    function markToday(){
+
+      const today =
+      new Date().toDateString();
+
+      if(lastDate === today){
+
+        alert("🔥 Already completed today!");
+
+        return;
+
+      }
+
+      const yesterday = new Date();
+
+      yesterday.setDate(
+      yesterday.getDate() - 1
+      );
+
+      if(lastDate === yesterday.toDateString()){
+
+        streak++;
+
+      }else{
+
+        streak = 1;
+
+      }
+
+      localStorage.setItem("streak", streak);
+
+      localStorage.setItem("lastDate", today);
+
+      streakText.innerText =
+      streak + " Day Streak";
+
+      alert("🔥 Streak Updated!");
+
+    }
+
+  </script>
+
+</body>
+</html>

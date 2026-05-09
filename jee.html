@@ -1,0 +1,267 @@
+<!-- MODERN JEE SUBJECT SECTION -->
+
+<section class="jee-section">
+
+  <div class="jee-heading">
+
+    <h1>
+      JEE Main Practice Hub
+    </h1>
+
+    <p>
+      Practice Physics, Chemistry & Mathematics PYQs with real exam experience.
+    </p>
+
+  </div>
+
+  <div class="jee-container">
+
+    <!-- Physics Card -->
+
+    <div class="jee-box physics">
+
+      <div class="glow"></div>
+
+      <div class="jee-top">
+
+        <i class="fa-solid fa-atom"></i>
+
+        <span>
+          Physics
+        </span>
+
+      </div>
+
+      <h2>
+        Master Physics PYQs
+      </h2>
+
+      <p>
+        Solve previous year questions chapter-wise with timer mode,
+        solutions and performance tracking.
+      </p>
+
+      <a href="physics.html">
+        <button>
+          Start Practice
+        </button>
+      </a>
+
+    </div>
+
+    <!-- Chemistry Card -->
+
+    <div class="jee-box chemistry">
+
+      <div class="glow"></div>
+
+      <div class="jee-top">
+
+        <i class="fa-solid fa-flask"></i>
+
+        <span>
+          Chemistry
+        </span>
+
+      </div>
+
+      <h2>
+        Crack Chemistry Faster
+      </h2>
+
+      <p>
+        Practice Organic, Inorganic & Physical Chemistry PYQs
+        with smart analytics.
+      </p>
+
+      <a href="chemistry.html">
+        <button>
+          Start Practice
+        </button>
+      </a>
+
+    </div>
+
+    <!-- Maths Card -->
+
+    <div class="jee-box maths">
+
+      <div class="glow"></div>
+
+      <div class="jee-top">
+
+        <i class="fa-solid fa-square-root-variable"></i>
+
+        <span>
+          Mathematics
+        </span>
+
+      </div>
+
+      <h2>
+        Boost Maths Speed
+      </h2>
+
+      <p>
+        Improve accuracy and speed with advanced Mathematics
+        PYQ practice sessions.
+      </p>
+
+      <a href="maths.html">
+        <button>
+          Start Practice
+        </button>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+.jee-section{
+  width:100%;
+  padding:90px 8%;
+  background:#070b16;
+}
+
+.jee-heading{
+  text-align:center;
+  margin-bottom:70px;
+}
+
+.jee-heading h1{
+  font-size:3.2rem;
+  color:white;
+  margin-bottom:15px;
+}
+
+.jee-heading p{
+  color:#bdbdbd;
+  font-size:1.1rem;
+}
+
+.jee-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:35px;
+}
+
+.jee-box{
+  position:relative;
+  overflow:hidden;
+  padding:35px;
+  border-radius:30px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  transition:0.45s;
+  min-height:380px;
+}
+
+.jee-box:hover{
+  transform:translateY(-15px) scale(1.03);
+}
+
+.glow{
+  position:absolute;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  top:-60px;
+  right:-60px;
+  filter:blur(60px);
+  opacity:0.35;
+}
+
+.physics .glow{
+  background:#00bfff;
+}
+
+.chemistry .glow{
+  background:#9b5cff;
+}
+
+.maths .glow{
+  background:#4cff94;
+}
+
+.jee-top{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:30px;
+}
+
+.jee-top i{
+  font-size:32px;
+  color:white;
+}
+
+.jee-top span{
+  font-size:20px;
+  font-weight:600;
+  color:white;
+}
+
+.jee-box h2{
+  font-size:2rem;
+  margin-bottom:18px;
+  line-height:1.3;
+}
+
+.jee-box p{
+  color:#d1d1d1;
+  line-height:1.8;
+  margin-bottom:35px;
+}
+
+.jee-box button{
+  padding:15px 28px;
+  border:none;
+  border-radius:16px;
+  background:white;
+  color:black;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.jee-box button:hover{
+  transform:scale(1.06);
+}
+
+.physics{
+  background:linear-gradient(145deg,
+  rgba(0,191,255,0.12),
+  rgba(255,255,255,0.03));
+}
+
+.chemistry{
+  background:linear-gradient(145deg,
+  rgba(155,92,255,0.12),
+  rgba(255,255,255,0.03));
+}
+
+.maths{
+  background:linear-gradient(145deg,
+  rgba(76,255,148,0.12),
+  rgba(255,255,255,0.03));
+}
+
+@media(max-width:768px){
+
+  .jee-heading h1{
+    font-size:2.3rem;
+  }
+
+  .jee-box{
+    min-height:auto;
+  }
+
+}
+
+</style>

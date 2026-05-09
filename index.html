@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prep Circuit</title>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#070b16;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    ::-webkit-scrollbar{
+      width:8px;
+    }
+
+    ::-webkit-scrollbar-thumb{
+      background:#6c63ff;
+      border-radius:10px;
+    }
+
+    .navbar{
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 8%;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      background:rgba(0,0,0,0.4);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:#7b8cff;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:25px;
+    }
+
+    .nav-links a{
+      color:white;
+      text-decoration:none;
+      transition:0.3s;
+      font-weight:500;
+    }
+
+    .nav-links a:hover{
+      color:#7b8cff;
+    }
+
+    .btn{
+      padding:12px 22px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,#6c63ff,#00bfff);
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 25px rgba(108,99,255,0.5);
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:120px 8% 60px;
+      background:
+      radial-gradient(circle at top left,#6c63ff33,transparent 30%),
+      radial-gradient(circle at bottom right,#00bfff22,transparent 30%);
+    }
+
+    .hero-content{
+      max-width:900px;
+    }
+
+    .hero h1{
+      font-size:4rem;
+      line-height:1.2;
+      margin-bottom:20px;
+    }
+
+    .hero span{
+      color:#7b8cff;
+    }
+
+    .hero p{
+      color:#c7c7c7;
+      font-size:1.1rem;
+      margin-bottom:35px;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:20px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    section{
+      padding:80px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      font-size:2.5rem;
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:#b8b8b8;
+    }
+
+    .card-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:30px;
+      border-radius:22px;
+      backdrop-filter:blur(12px);
+      transition:0.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card:hover{
+      transform:translateY(-10px) scale(1.02);
+      border-color:#6c63ff;
+      box-shadow:0 0 30px rgba(108,99,255,0.25);
+    }
+
+    .card i{
+      font-size:40px;
+      margin-bottom:20px;
+      color:#7b8cff;
+    }
+
+    .card h3{
+      margin-bottom:12px;
+    }
+
+    .card p{
+      color:#c2c2c2;
+      font-size:0.95rem;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .stat-box{
+      text-align:center;
+      background:rgba(255,255,255,0.05);
+      padding:35px;
+      border-radius:20px;
+      transition:0.3s;
+    }
+
+    .stat-box:hover{
+      transform:scale(1.04);
+    }
+
+    .stat-box h2{
+      font-size:3rem;
+      color:#7b8cff;
+    }
+
+    .testimonial{
+      background:rgba(255,255,255,0.05);
+      border-radius:20px;
+      padding:25px;
+    }
+
+    .testimonial img{
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      margin-bottom:15px;
+    }
+
+    .footer{
+      padding:40px 8%;
+      background:#04060d;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer p{
+      color:#b6b6b6;
+    }
+
+    .floating{
+      animation:float 4s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-15px);
+      }
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:2.5rem;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .hero-buttons{
+        flex-direction:column;
+        align-items:center;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+
+  <nav class="navbar">
+    <div class="logo">Prep Circuit</div>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">PYQs</a>
+      <a href="mocktest.html">Mock Tests</a>
+      <a href="drashboard.html">Dashboard</a>
+      <a href="price.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <a href="login.html" class="btn">Login</a>
+  </nav>
+
+  <!-- Hero -->
+
+  <section class="hero">
+
+    <div class="hero-content floating">
+
+      <h1>
+        Practice <span>JEE & NEET</span> PYQs Smarter
+      </h1>
+
+      <p>
+        Thousands of PYQs, mock tests, analytics, and smart practice tools in one place.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#" class="btn">Start Practicing</a>
+        <a href="#" class="btn">Explore Exams</a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Exams -->
+
+  <section>
+
+    <div class="section-title">
+      <h2>Trending Exams</h2>
+      <p>Prepare for India’s top competitive exams</p>
+    </div>
+
+    <div class="card-grid">
+
+      <div class="card">
+
+  <i class="fa-solid fa-atom"></i>
+
+  <h3>JEE Main</h3>
+
+  <p>
+    Practice chapter-wise PYQs with detailed analysis.
+  </p>
+
+  <br>
+
+  <a href="jee.html" class="btn">
+    Open JEE Practice
+  </a>
+
+</div>
+
+      <div class="card">
+        <i class="fa-solid fa-brain"></i>
+        <h3>NEET</h3>
+        <p>Biology focused mock tests and previous year questions.</p>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <h3>WBJEE</h3>
+        <p>Targeted preparation with smart ranking analysis.</p>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-book"></i>
+        <h3>CUET</h3>
+        <p>Comprehensive PYQ sets and topic practice.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Features -->
+
+  <section>
+
+    <div class="section-title">
+      <h2>Platform Features</h2>
+      <p>Everything you need to crack your dream exam</p>
+    </div>
+
+    <div class="card-grid">
+
+      <div class="card">
+        <i class="fa-solid fa-clock"></i>
+        <h3>Real Exam Interface</h3>
+        <p>Experience CBT-based test environment.</p>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-chart-line"></i>
+        <h3>Performance Analytics</h3>
+        <p>Track weak chapters and improve smarter.</p>
+      </div>
+  
+      <div class="card">
+        <i class="fa-solid fa-robot"></i>
+        <h3>AI Doubt Helper</h3>
+        <p>Instant doubt-solving chatbot integration.</p>
+      </div>
+
+      <div class="card">
+  <i class="fa-solid fa-fire"></i>
+
+  <h3>Daily Streaks</h3>
+
+  <p>
+    Stay consistent and build study habits.
+  </p>
+
+  <br>
+
+  <a href="dailysteak.html" class="btn">
+    Open Streak
+  </a>
+
+</div>
+
+      <div class="card">
+        <i class="fa-solid fa-ranking-star"></i>
+        <h3>Leaderboard</h3>
+        <p>Compete with students across India.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Stats -->
+
+  <section>
+
+    <div class="section-title">
+      <h2>Prep Circuit Stats</h2>
+      <p>Growing community of aspirants</p>
+    </div>
+
+    <div class="stats">
+
+      <div class="stat-box">
+        <h2>50K+</h2>
+        <p>PYQs Available</p>
+      </div>
+
+      <div class="stat-box">
+        <h2>15K+</h2>
+        <p>Students</p>
+      </div>
+
+      <div class="stat-box">
+        <h2>1200+</h2>
+        <p>Mock Tests</p>
+      </div>
+
+      <div class="stat-box">
+        <h2>98%</h2>
+        <p>Satisfaction</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Testimonials -->
+
+  <section>
+
+    <div class="section-title">
+      <h2>Student Reviews</h2>
+      <p>What aspirants say about Prep Circuit</p>
+    </div>
+
+    <div class="card-grid">
+
+      <div class="testimonial">
+        <img src="https://i.pravatar.cc/100?img=12">
+        <h3>Rahul Sharma</h3>
+        <p>
+          “The analytics and PYQ filters helped me improve my JEE score massively.”
+        </p>
+      </div>
+
+      <div class="testimonial">
+        <img src="https://i.pravatar.cc/100?img=5">
+        <h3>Ananya Das</h3>
+        <p>
+          “Mock tests feel exactly like the real exam. Super smooth platform.”
+        </p>
+      </div>
+
+      <div class="testimonial">
+        <img src="https://i.pravatar.cc/100?img=9">
+        <h3>Arjun Verma</h3>
+        <p>
+          “Daily challenges and streaks keep me motivated every day.”
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section>
+
+    <div class="card" style="text-align:center; padding:60px;">
+
+      <h2 style="font-size:2.5rem; margin-bottom:20px;">
+        Ready to Crack Your Dream Exam?
+      </h2>
+
+      <p style="margin-bottom:30px; color:#c7c7c7;">
+        Join thousands of students practicing smarter with Prep Circuit.
+      </p>
+
+      <a href="#" class="btn">
+        Start Free Practice
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+
+  <footer class="footer">
+
+    <h2 style="margin-bottom:10px;">Prep Circuit</h2>
+
+    <p>
+      Master PYQs. Crack Your Dream Exam.
+    </p>
+
+    <div style="margin-top:20px; display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+
+      <a href="#" style="color:white;">
+        <i class="fa-brands fa-telegram fa-2x"></i>
+      </a>
+
+      <a href="#" style="color:white;">
+        <i class="fa-brands fa-discord fa-2x"></i>
+      </a>
+
+      <a href="#" style="color:white;">
+        <i class="fa-brands fa-instagram fa-2x"></i>
+      </a>
+
+    </div>
+
+    <p style="margin-top:20px;">
+      © 2026 Prep Circuit. All Rights Reserved.
+    </p>
+
+  </footer>
+
+  <script>
+
+    // Simple fade animation on scroll
+
+    const cards = document.querySelectorAll('.card');
+
+    window.addEventListener('scroll',()=>{
+
+      cards.forEach(card=>{
+
+        const top = card.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 50){
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0)";
+        }
+
+      });
+
+    });
+
+    cards.forEach(card=>{
+      card.style.opacity="0";
+      card.style.transform="translateY(30px)";
+      card.style.transition="0.7s";
+    });
+
+  </script>
+
+</body>
+</html>

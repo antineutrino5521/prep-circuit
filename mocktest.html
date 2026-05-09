@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mock Tests - Prep Circuit</title>
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#070b16;
+      color:white;
+      min-height:100vh;
+    }
+
+    .navbar{
+      width:100%;
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(255,255,255,0.03);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:#7b8cff;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:20px;
+    }
+
+    .nav-links a{
+      color:white;
+      text-decoration:none;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:#7b8cff;
+    }
+
+    .container{
+      padding:60px 8%;
+    }
+
+    .heading{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .heading h1{
+      font-size:3rem;
+      margin-bottom:15px;
+    }
+
+    .heading p{
+      color:#bcbcbc;
+    }
+
+    .exam-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .exam-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:30px;
+      border-radius:25px;
+      transition:0.4s;
+      backdrop-filter:blur(10px);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .exam-card:hover{
+      transform:translateY(-10px) scale(1.02);
+      border-color:#7b8cff;
+      box-shadow:0 0 25px rgba(123,140,255,0.3);
+    }
+
+    .exam-card i{
+      font-size:45px;
+      margin-bottom:20px;
+      color:#7b8cff;
+    }
+
+    .exam-card h2{
+      margin-bottom:10px;
+    }
+
+    .exam-card p{
+      color:#c8c8c8;
+      margin-bottom:25px;
+      font-size:0.95rem;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:12px 22px;
+      background:linear-gradient(135deg,#6c63ff,#00bfff);
+      border-radius:12px;
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 20px rgba(108,99,255,0.5);
+    }
+
+    .footer{
+      text-align:center;
+      padding:30px;
+      margin-top:50px;
+      border-top:1px solid rgba(255,255,255,0.08);
+      color:#b8b8b8;
+    }
+
+    @media(max-width:768px){
+
+      .heading h1{
+        font-size:2.2rem;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+
+  <nav class="navbar">
+
+    <div class="logo">Prep Circuit</div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="mocktest.html">Mock Tests</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="login.html">Login</a>
+    </div>
+
+  </nav>
+
+  <!-- Main -->
+
+  <div class="container">
+
+    <div class="heading">
+
+      <h1>Previous Year Mock Tests</h1>
+
+      <p>
+        Practice real exam-level mock tests for top competitive exams.
+      </p>
+
+    </div>
+
+    <div class="exam-grid">
+
+      <!-- JEE -->
+
+      <div class="exam-card">
+
+        <i class="fa-solid fa-atom"></i>
+
+        <h2>JEE Main</h2>
+
+        <p>
+          Attempt previous year JEE Main papers with timer and analysis.
+        </p>
+
+        <a href="jee-mock.html" class="btn">
+          Open Mock Tests
+        </a>
+
+      </div>
+
+      <!-- NEET -->
+
+      <div class="exam-card">
+
+        <i class="fa-solid fa-stethoscope"></i>
+
+        <h2>NEET</h2>
+
+        <p>
+          Practice NEET previous year papers in real CBT mode.
+        </p>
+
+        <a href="neet-mock.html" class="btn">
+          Open Mock Tests
+        </a>
+
+      </div>
+
+      <!-- CUET -->
+
+      <div class="exam-card">
+
+        <i class="fa-solid fa-book-open"></i>
+
+        <h2>CUET</h2>
+
+        <p>
+          Improve speed and accuracy with CUET mock papers.
+        </p>
+
+        <a href="cuet-mock.html" class="btn">
+          Open Mock Tests
+        </a>
+
+      </div>
+
+      <!-- NDA -->
+
+      <div class="exam-card">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <h2>NDA</h2>
+
+        <p>
+          Solve NDA previous year papers and improve preparation.
+        </p>
+
+        <a href="nda-mock.html" class="btn">
+          Open Mock Tests
+        </a>
+
+      </div>
+
+      <!-- WBJEE -->
+
+      <div class="exam-card">
+
+        <i class="fa-solid fa-graduation-cap"></i>
+
+        <h2>WBJEE</h2>
+
+        <p>
+          Practice WBJEE PYQs with chapter-wise analysis.
+        </p>
+
+        <a href="wbjee-mock.html" class="btn">
+          Open Mock Tests
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+
+  <div class="footer">
+
+    © 2026 Prep Circuit • Master PYQs. Crack Your Dream Exam.
+
+  </div>
+
+</body>
+</html>
